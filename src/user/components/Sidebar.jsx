@@ -5,7 +5,7 @@ import { useState } from 'react';
 import {
   LayoutDashboard, BookOpen, MessageSquare, FileText,
   CalendarCheck, Bot, Megaphone, BarChart2, User, Settings, Activity,
-  LayoutGrid, Calendar, Folder, Bell, Download, ChevronRight, ChevronLeft, LogOut, Target, Trophy,
+  LayoutGrid, Calendar, Folder, Bell, Download, ChevronRight, ChevronLeft, LogOut, Target, Trophy, Briefcase,
 } from 'lucide-react';
 import { useAuthStore } from '../../lib/auth';
 import { APP_CONSTANTS } from '../../shared/config/constants';
@@ -27,6 +27,7 @@ const MENU = [
   { id: 'analytics',      label: 'Analytics',      icon: BarChart2       },
   { id: 'exports',        label: 'Data Export',    icon: Download        },
   { id: 'skill_gap',      label: 'Skill Gap',      icon: Target          },
+  { id: 'resume',         label: 'Resume Builder', icon: Briefcase       },
   { id: 'profile',        label: 'Profile',        icon: User            },
   { id: 'settings',       label: 'Settings',       icon: Settings        },
 ];

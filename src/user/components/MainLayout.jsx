@@ -22,6 +22,7 @@ const PAGE_TITLES = {
   analytics:      'Analytics',
   profile:        'My Profile',
   settings:       'Settings',
+  resume:         'Resume Builder',
 };
 
 const MainLayout = ({ page, onNavigate, children }) => {

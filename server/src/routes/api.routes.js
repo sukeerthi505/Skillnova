@@ -10,6 +10,7 @@ import * as attendance from '../controllers/attendance.controller.js';
 import * as projects from '../controllers/projects.controller.js';
 import * as ai from '../controllers/ai.controller.js';
 import * as notif from '../controllers/notifications.controller.js';
+import * as resume from '../controllers/resume.controller.js';
 import { authenticate, requireAuth } from '../middleware/auth.js';
 import { requirePermission } from '../middleware/rbac.js';
 import { validate, schemas } from '../middleware/validate.js';
@@ -274,5 +275,54 @@ api.get('/analytics/interns', requirePermission('users:read'), notif.internPerfo
 // ── Gamification ──────────────────────────────────────────
 import gamification from './gamification.routes.js';
 api.use('/gamification', gamification);
+
+// ── Resume Builder ─────────────────────────────────────────
+api.get('/resume', resume.getResume);
+api.post(
+  '/resume',
+  validate(
+    z.object({
+      template: z.string().optional(),
+      personalInfo: z.object({
+        name: z.string().optional(),
+        title: z.string().optional(),
+        email: z.string().optional(),
+        phone: z.string().optional(),
+        linkedin: z.string().optional(),
+        github: z.string().optional(),
+        website: z.string().optional(),
+        summary: z.string().optional(),
+      }).optional().nullable(),
+      experience: z.array(
+        z.object({
+          id: z.string(),
+          company: z.string().optional().nullable(),
+          role: z.string().optional().nullable(),
+          startDate: z.string().optional().nullable(),
+          endDate: z.string().optional().nullable(),
+          description: z.string().optional().nullable(),
+        })
+      ).optional().nullable(),
+      projects: z.array(
+        z.object({
+          id: z.string(),
+          name: z.string().optional().nullable(),
+          role: z.string().optional().nullable(),
+          description: z.string().optional().nullable(),
+        })
+      ).optional().nullable(),
+      education: z.array(
+        z.object({
+          id: z.string(),
+          school: z.string().optional().nullable(),
+          degree: z.string().optional().nullable(),
+          year: z.string().optional().nullable(),
+        })
+      ).optional().nullable(),
+      skills: z.array(z.string()).optional().nullable(),
+    })
+  ),
+  resume.saveResume
+);
 
 export default api;

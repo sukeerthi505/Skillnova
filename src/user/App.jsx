@@ -23,6 +23,7 @@ const Notifications    = lazy(() => import('./pages/Notifications'));
 const Exports          = lazy(() => import('./pages/Exports'));
 const SkillGapAnalyzer = lazy(() => import('./pages/SkillGapAnalyzer'));
 const GamificationDashboard = lazy(() => import('./pages/GamificationDashboard'));
+const ResumeBuilder = lazy(() => import('./pages/ResumeBuilder'));
 
 const PAGES = {
   dashboard:      <Dashboard />,
@@ -43,6 +44,7 @@ const PAGES = {
   analytics:      <Suspense fallback={<PageLoader />}><Analytics /></Suspense>,
   profile:        <Suspense fallback={<PageLoader />}><Profile /></Suspense>,
   settings:       <Suspense fallback={<PageLoader />}><Settings /></Suspense>,
+  resume:         <Suspense fallback={<PageLoader />}><ResumeBuilder /></Suspense>,
 };
 
 const UserApp = () => {
